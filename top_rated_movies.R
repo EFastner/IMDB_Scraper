@@ -17,13 +17,13 @@ rating <- full_list %>% html_nodes("strong") %>% html_text() %>% as.numeric()
 
 top_movies <- data.frame(ID = link_list, title, year, rating)
 
-# #IN DEVELOPMENT - Cycle through each top movie to compile more data
-# for (i in 1:nrow(top_movies)) {
-#   print(i)
-# 
-#   movie_data <- ds.scrape_movie(top_movies[i, "ID"])
-# 
-#   top_movies[i, "budget"] <- movie_data[1]
-#   top_movies[i, "runtime"] <- movie_data[2]
-# 
-# }
+#IN DEVELOPMENT - Cycle through each top movie to compile more data
+for (i in 1:nrow(top_movies)) {
+  print(i)
+
+  movie_data <- ds.scrape_movie(top_movies[i, "ID"])
+
+  top_movies[i, "budget"] <- movie_data["budget"]
+  top_movies[i, "runtime"] <- movie_data["runtime"]
+
+}
