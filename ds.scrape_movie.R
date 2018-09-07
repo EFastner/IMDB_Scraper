@@ -52,21 +52,6 @@ ds.scrape_title_wrap <- function(pagecontent) {
   
   title_wrap <- ds.get_node_text(pagecontent, "[class = 'title_wrapper']", try_count = 5)
   
-  # try_count = 0
-  # title_wrap = character(0)
-  # 
-  # while (length(title_wrap) == 0 & try_count <6) {
-  #   title_wrap <- 
-  #     pagecontent %>%
-  #     html_node("[class = 'title_wrapper']")
-  #   
-  #   try_count <- try_count + 1
-  # }
-  # 
-  # if (length(title_wrap) == 0) {
-  #   return(character(0))
-  # }
-  
   if (length(title_wrap) != 0) {
     title <- 
       gsub("\\S\\(\\d+\\)\\s+$","", title_wrap %>% html_node("h1") %>% html_text())
@@ -135,22 +120,6 @@ ds.scrape_storyline <- function(pagecontent) {
   
   storyline <- ds.get_node_text(pagecontent, "[class = 'see-more inline canwrap']", try_count = 5)
   
-  # try_count <- 0
-  # storyline <- character(0)
-  # 
-  # while (length(storyline) == 0 & try_count < 6) {
-  #   storyline <- 
-  #     pagecontent %>% 
-  #     html_nodes("[class = 'see-more inline canwrap']") %>%
-  #     html_text()
-  #   
-  #   try_count <- try_count + 1
-  # }
-  # 
-  # if (length(storyline) == 0) {
-  #   return(character(0))
-  # }
-  
   if (length(storyline) != 0) {
     scrape_row <- 
       storyline[sapply(storyline, function(x) grepl("Genres", x))] %>% html_text()
@@ -173,26 +142,6 @@ ds.scrape_details <- function(pagecontent) {
 #ARGUMENTS: pagecontent = full page html pulled with ds.get_movie_page
   
   title_details_text <- ds.get_node_text(pagecontent, "[id = 'titleDetails'] div", try_count = 5)
-  
-  # try_count = 0
-  # title_details_text <- character(0)
-  # 
-  # #Try to grab the title details
-  # while (length(title_details_text) == 0 & try_count < 6) {
-  #   title_details <- 
-  #     pagecontent %>% 
-  #     html_nodes("[id = 'titleDetails']") %>%
-  #     html_nodes("div")
-  #   
-  #   title_details_text <- title_details %>% html_text()
-  #   
-  #   try_count <- try_count + 1
-  # }
-  # 
-  # #If the function was not able to retrieve the title details, return nothing
-  # if (length(title_details_text) == 0) {
-  #   return(character(0))
-  # }
   
   if (length(title_details_text) != 0) {
     #Grab Budget
